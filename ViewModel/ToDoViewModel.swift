@@ -14,8 +14,8 @@ class ToDoViewModel: ObservableObject {
     @Published var removeTasks: [ToDoItem]
     @Published var searchEntry: String
     @Published var newTask: String
-    @Published var editMode: EditMode = .inactive // Tracks whether the list is in edit mode
-    @Published var editingTask: ToDoItem? = nil   // Tracks the currently editing task
+    @Published var editMode: EditMode = .inactive
+    @Published var editingTask: ToDoItem? = nil
     
     private var cancellables = Set<AnyCancellable>()
     private let userDefaultsKey = "tasks"
@@ -70,7 +70,7 @@ class ToDoViewModel: ObservableObject {
     
     func toggleTaskCompletion(for item: ToDoItem) {
         if let index = tasks.firstIndex(where: { $0.id == item.id }) {
-            print("Before toggle: \(tasks[index].isCompleted)")//debug purposes
+            print("Before toggle: \(tasks[index].isCompleted)") //debug purposes
             tasks[index].isCompleted.toggle()
             print("After toggle: \(tasks[index].isCompleted)")
             saveTasks(tasks)
